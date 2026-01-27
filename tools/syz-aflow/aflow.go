@@ -117,6 +117,9 @@ func downloadBug(id, inputFile, token string) error {
 		}
 	}
 	var info map[string]any
+	if !json.Valid(data) {
+		return fmt.Errorf("response for extID %v is not valid JSON", extID)
+	}
 	if err := json.Unmarshal([]byte(resp), &info); err != nil {
 		return err
 	}
